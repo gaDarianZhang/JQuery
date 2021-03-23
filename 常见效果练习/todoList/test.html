@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            background-color: #00ccff;
+            /*width: 50px;*/
+        }
+        .box3{
+            width: 100px;
+            border: 1px solid red;
+        }
+        .box3{
+            width: 200px;
+            height: 100px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="box1">
+    <div class="box2">
+        <div class="box3" id="box"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var box = document.getElementById("box");
+    box.sex = "box";
+    var obj = {
+        sex: 'obj',
+        getSex: function (sex) {
+            alert(this.sex);
+            console.log(sex);
+        }
+    }
+    box.onclick = function () {
+        obj.getSex(this.sex);
+    }
+
+</script>
+</body>
+</html>

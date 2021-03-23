@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*div{*/
+        /*    float: left;*/
+        /*    background-color: pink;*/
+        /*}*/
+        /*a{*/
+        /*    display: block;*/
+        /*}*/
+        .clearfix::after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .box1{
+            position: relative;
+        }
+        .box2{
+            /*float: left;*/
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+<div><a href="javascript:;">你是谁</a></div>
+<div class="box1 clearfix">
+    <div class="box2"></div>
+</div>
+<script type="text/javascript">
+    function f1(item) {
+        console.log(item);
+    }
+    f1();
+    console.log(typeof 1);
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="height: 2000px">
+<div class="test" style="border:1px solid black;width:100px;height:150px;overflow:auto">
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    his is some text.
+</div>
+<br>
+<br>
+<br>
+<button id="btn1">得到scrollTop</button>
+<button id="btn2">设置scrollTop</button>
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    // 1. scrollTop():
+    // 读取/设置滚动条的Y坐标
+    // 2. $(document.body).scrollTop()+$(document.documentElement).scrollTop()
+    // 读取页面滚动条的Y坐标(兼容chrome和IE)
+    // 3. $('body,html').scrollTop(60);
+    // 滚动到指定位置(兼容chrome和IE)
+    // ！！！！！！！！！！！！！！系统滚动条在IE和chrome内分别在body和html上加着的！！！！！！！
+    $(function () {
+        $("#btn1").click(function () {
+            console.log($(".test").scrollTop());
+            console.log($("body").scrollTop());
+            console.log($("html").scrollTop());
+            console.log($("body").scrollTop()+$("html").scrollTop());
+
+        });
+        $("#btn2").click(function () {
+            $(".test").scrollTop(200);
+            //最牢靠的方法！！！！！！！！
+            // $("html,body").scrollTop(200);
+            //新版本的jQuery可以用document
+            $(document).scrollTop(200);
+        })
+    })
+
+</script>
+</body>
+</html>

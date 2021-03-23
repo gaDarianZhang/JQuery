@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+        }
+
+        .div1 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 300px;
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<button id="btn1">逐渐扩大</button>
+<button id="btn2">向右移动</button>
+<button id="btn3">向左移动</button>
+<button id="btn4">停止动画</button>
+
+<div class="div1">
+    爱在西元前，学在尚硅谷
+</div>
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    // jQuery动画本质 : 在指定时间内不断改变元素样式值来实现的
+    //     1. animate(): 自定义动画效果的动画
+    //     2. stop(): 停止动画
+    //
+    //
+    // 需求：
+    // 1.逐渐扩大
+    //     1.宽度扩大
+    //     2.宽度和高度扩大
+    //     3.先宽度扩大后高度扩大
+    // $("#btn1").click(function () {
+    //     $(".div1").animate({
+    //         "width":"200px",//写法1  ！！！！！！！！！！！！！！！！！！
+    //         height:"200px"  //写法2  ！！！！！！！！！！！！！！！！！！
+    //     },2000);
+    // });//宽高同时扩大
+    $("#btn1").click(function () {
+        $(".div1")
+            .animate({
+                width: 300     //写法3  ！！！！！！！！！！！！！！！！！！
+            },2000)
+            .animate({
+                height: "300px"
+            },4000);
+    });
+    // 2.向右移动
+    //     1.向右移动 固定的200px
+    //     2.基于当前位置向右移动 200px
+    // $("#btn2").click(function () {
+    //     $(".div1").animate({
+    //         left: "500px"
+    //     },1000)
+    // });
+    $("#btn2").click(function () {
+        $(".div1").animate({
+            left: "+=200px"    //！！！！！！！！！！！！！！！！！！！！！！
+        },1000)
+    });
+    // 3.向左移动
+    //     1.向右移动 固定的200px
+    //     2.基于当前位置向右移动 200px
+    $("#btn3").click(function () {
+        $(".div1").animate({
+            left: "-=200px"    //！！！！！！！！！！！！！！！！！！！！！！
+        },1000)
+    });
+    // 4.停止动画
+    //     1.停止所有的动画
+    //     2.停止当前动画，直接开始下一个动画
+    //     3.停止并结束当前动画，开始下一个动画
+    //一般情况下，在一个动画还没结束的时候就点击另一个动画的话，这些动画会排成队，等前边的完成动作才开始。
+    $("#btn4").click(function () {
+        //！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+        //stop(blooean1,blooean2) blooean1：是否清空动画队列，blooean2：是否立即到达当前动画的最终状态，默认都是false
+        // $(".div1").stop();//停止当前动画，并且在当前状态下继续执行下一个动画，不清空已经产生的动画队列
+        // $(".div1").stop(true,true);//停止所有动画，并且元素立即到达当前动画的最终效果，并且清空后边的动画队列
+        // $(".div1").stop(false,true);//停止当前动画，元素立即到达当前动画的最终效果，并且不清空队列，继续执行后续的动画队列
+        $(".div1").stop(true,false);//停止所有动画，并且元素停止在当前状态下
+    })
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+        }
+        .box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #00ccff;
+            left: 200px;
+        }
+
+        .out {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 20px;
+            left: 10px;
+            background: blue;
+        }
+
+        .inner {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            background: red;
+        }
+
+        .divBtn {
+            position: absolute;
+            top: 250px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<div class="out">
+    外部DIV
+    <div class="inner">内部div</div>
+</div>
+
+<div class='divBtn'>
+    <button id="btn1">取消绑定所有事件</button>
+    <button id="btn2">取消绑定mouseover事件</button>
+    <button id="btn3">测试事件坐标</button>
+    <a href="http://www.baidu.com" id="test4">百度一下</a>
+</div>
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    // 1. 事件绑定(2种)：on和off还有更复杂的参数，参考文档即可
+    //     * eventName(function(){})
+    //         绑定对应事件名的监听,	例如：$('#div').click(function(){});
+    //     * on(eventName, funcion(){})
+    //         通用的绑定事件监听, 例如：$('#div').on('click', function(){})
+    //     * 优缺点:
+    //         - eventName: 编码方便, 但只能加一个监听, 且有的事件监听不支持
+    //         - on: 编码不方便, 可以同时给一个元素添加多个监听事件，如“click mouseenter”, 且更通用
+    //         - 二者在绑定静态控件时没有区别，但是如果面对动态产生的控件，只有 on() 能成功的绑定到动态控件中。可以代替事件委托
+    //         - 同一种event绑定多个回调函数都不会覆盖
+    //     * off([eventName[,functionName]]);
+    //         - 不加参数则是释放这个元素上的所有事件
+    //         - 加eventName则是释放该事件的所有回调函数
+    //         - 加eventName和functionName则是释放元素上该事件的指定回调函数
+    // 2. 事件解绑：
+    //     * off(eventName) 
+
+    // 1. 给.out绑定点击监听(用两种方法绑定)
+    $(".out").click(function () {
+        console.log("click事件回调");
+    });
+    $(".out").click(function () {
+        console.log("click事件没覆盖");
+    })
+    $(".out").on("click",function () {
+        console.log("on  click事件回调1");
+    })
+    $(".out").on("click",function () {
+        console.log("on  click事件回调2");
+    })
+
+    $(".box").click(clickEvent1);
+    $(".box").on("click",clickEvent2);
+    function clickEvent1(){
+        console.log("click事件单独写1");
+    }
+    function clickEvent2(){
+        console.log("click事件单独写2");
+    }
+    $(".box").off("click",clickEvent1);//解绑成功
+    // 2. 给.inner绑定鼠标移入和移出的事件监听(用3种方法绑定)
+    $(".inner")
+        .on("mouseenter",function () {
+            console.log("我是mouseenter");
+        })
+        .on("mouseleave",function () {
+            console.log("我是mouseleave");
+        });
+    $(".inner")
+        .on("mouseover",function () {
+            console.log("我是mouseover");
+        })
+        .on("mouseout",function () {
+            console.log("我是mouseout");
+        });
+    //hover()可以传入两个回调函数，第一个函数时移入的回调，第二个是移出的回调。
+    // 如果只传入一个，那么移入移出都触发这一个函数
+    $(".inner").hover(function () {
+        console.log("我是hover移入");
+    },function () {
+        console.log("我是hover移出");
+    });
+    // 3. 点击btn1解除.inner上的所有事件监听
+    $("#btn1").click(function () {
+        console.log("解绑inner所有事件");
+        $(".inner").off();
+    });
+    // 4. 点击btn2解除.inner上的mouseover事件
+    $("#btn2").on("click",function () {
+        console.log("解绑inner上的mouseover事件");
+        $(".inner").off("mouseover");
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    1. $.each(): 遍历数组或对象中的数据
+    2. $.trim(): 去除字符串两边的空格
+    3. $.type(obj): 得到数据的类型
+    4. $.isArray(obj): 判断是否是数组
+    5. $.isFunction(obj): 判断是否是函数
+    6. $.parseJSON(json) : 解析json字符串转换为js对象/数组
+-->
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    var person = {
+        name:"zhangsan",
+        age:12
+    };
+    var arr = [1,2,3];
+    var json = '{"username":"zhangsan","age":12}';
+    var jsonArr = '[{"username":"zhangsan","age":12},{"username":"lisi","age":22}]';
+    console.log($.type(arr));//array！！！！原生js是不行的
+    console.log($.type($));//function
+    console.log($.type($()));//object
+    console.log($.isFunction($));//true
+    console.log($.isFunction($()));//false
+    console.log($.isArray(arr));//true
+    console.log($.parseJSON(json));
+    console.log($.parseJSON(jsonArr));
+
+
+
+</script>
+</body>
+</html>

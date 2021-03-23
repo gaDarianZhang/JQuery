@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>第一段</p>
+<button>测试一</button>
+<button>测试二</button>
+<button id="btn3">测试三</button>
+<button>测试四</button>
+<!--
+1. jQuery对象是一个包含所有匹配的任意多个dom元素的伪数组对象
+2. 基本行为
+  * size()/length: 包含的DOM元素个数
+  * [index]/get(index): 得到对应位置的！！！DOM元素！！！
+  * each(): 遍历包含的所有DOM元素
+  * index(): 得到在所在兄弟元素中的下标
+-->
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    /*
+     需求:
+     需求1. 统计一共有多少个按钮
+     需求2. 取出第2个button的文本
+     需求3. 输出所有button标签的文本
+     需求4. 输出'测试三'按钮是所有按钮中的第几个
+     */
+    //需求1. 统计一共有多少个按钮
+    var $btns = $("button");
+    console.log($btns.length,$btns.size());
+
+    //需求2. 取出第2个button的文本
+    console.log($btns[1].innerHTML);//！！！！！！！！一个[]取出后就不是jQuery对象了
+    console.log($($btns.get(1)).html());//又给包装成jQuery对象
+    
+//    需求3. 输出所有button标签的文本
+    $btns.each(function (index,domEle) {
+        console.log(domEle.innerHTML);
+    })
+
+//    需求4. 输出'测试三'按钮是所有按钮中的第几个
+    //--------------------------   index()   ---------------------------
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!index();从0开始!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //1、被一个jQuery对象集合调用，那么如果参数：
+    //  - 没有参数：返回这个jQuery对象集合中第一个元素相对于其同辈元素的位置。不一定是0奥。可能其他元素是这个集合中第一个元素的同辈，而且是在它的前边。
+    //  - 一个DOM对象：返回这个对象在原先集合中的索引位置
+    //  - 一个jQuery对象：返回这个对象在原先集合中的索引位置
+    //2、被一个jQuery对象调用，那么如果参数为：
+    //  - 没有参数：返回这个元素在同辈中的索引位置
+    //  - 一个引号内的选择器：返回这个元素相对于选择器匹配元素中的位置
+    console.log($("#btn3").index('button'));//一个对象+选择器 2
+    console.log($("#btn3").index());//一个对象+空  3
+    console.log($btns.index());//集合+空 1
+    console.log($btns.index($("#btn3")));//集合+jQuery对象 2
+    console.log($btns.index(document.getElementById("btn3")));//集合+DOM对象 2
+
+</script>
+</body>
+</html>

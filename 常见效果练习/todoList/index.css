@@ -1,0 +1,124 @@
+.btn{
+    padding: 4px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: 1px solid #bd362f;
+    background-color: #da4f49;
+    color: #e8dfdf;
+}
+.btn:hover{
+    background-color:#bd362f;
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+.btn:active{
+    background-color: #ad2d26;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+input,button{
+    outline: none;
+}
+
+.todo-container{
+    width: 600px;
+    margin: 20px auto;
+}
+.todo-container .todo-wrapper{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* header */
+.todo-header input{
+    width: 560px;
+    height: 28px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 7px;
+}
+.todo-header input:focus{
+    border-color:  rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 5px 2px rgba(0, 0, 0, 0.3), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+/* main */
+.todo-main{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 0 5px;
+}
+.todo-empty{
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #575866;
+}
+.todo-main li:hover{
+    background-color: #ccc;
+}
+.todo-main li:hover button{
+    display: block;
+}
+/* main>li */
+.todo-main .todo-item{
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid #ddd;
+}
+.todo-main .todo-item:last-child{
+    border-bottom: none;
+}
+
+.todo-main .todo-item label{
+    cursor: pointer;
+}
+.todo-main .todo-item label input{
+    margin-right: 5px;
+}
+
+.todo-main .todo-item button{
+    float: right;
+    margin-top: 3px;
+    display: none;
+}
+
+/* footer */
+.todo-footer{
+    height: 40px;
+    line-height: 40px;
+}
+.todo-footer label{
+    cursor: pointer;
+    margin-left: 11px;
+
+}
+.todo-footer label input{
+    margin-right: 5px;
+}
+.todo-footer button{
+    float: right;
+    margin: 5px 10px 0 0;
+}

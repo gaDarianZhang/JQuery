@@ -1,0 +1,499 @@
+html,body{ height: 100%;overflow: hidden;}
+html,body,h1,h2,h3,h4,h5,h6,p,ul,li{margin: 0px;padding: 0px;font: 14px "微软雅黑";}
+a{ text-decoration: none;display: block;}
+li{ list-style: none;}
+img{ display: block;}
+
+.clearfix{*zoom:1;}
+.clearfix::after{content: "";display: block;clear: both;}
+.commonTitle{
+    color:#009ee0; font-size:80px; line-height:0.8;
+    font-weight:bold; letter-spacing:-7px;
+    margin: 50px 0 100px 50px;
+}
+.commonText{
+    color:white; line-height:1.5; font-size:15px;
+    width: 400px;
+    margin-left: 50px;
+}
+#header{
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+#header .headerMain{
+    width: 1100px;
+    height: 80px;
+    margin: 0 auto;
+}
+#header .headerMain .logo{
+    float: left;
+    margin-top: 15px;
+}
+#header .headerMain .nav{
+    float: right;
+    margin-top: 50px;
+}
+#header .headerMain .nav ul li{
+    float: left;
+    margin-left: 40px;
+    position: relative;
+}
+#header .headerMain .nav ul li .up{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    width: 0;
+    overflow: hidden;
+    transition: width 1s;
+}
+#header .headerMain .nav ul li:hover .up{
+    width: 100%;
+}
+#header .arrow{
+    position: absolute;
+    width: 21px;
+    height: 11px;
+    left: 50%;
+    bottom: -11px;
+    transition: left 1s;
+    z-index: 9;
+}
+#header .arrow img{
+    width: 100%;
+    height: 100%;
+}
+
+/*相当于轮播图的显示区域*/
+#content{
+    width: 100%;
+    /*height:在js里边给*/
+    position: relative;
+    overflow: hidden;
+}
+/*相当于轮播图的多张图片的包围框*/
+#content .contentList{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: top 1s ease-out;
+}
+
+#content .contentList>li{
+    position: relative;
+    overflow: hidden;
+}
+#content .contentList>li>div{
+    position: absolute;
+    width: 1100px;
+    height: 520px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#content .contentList>li:nth-of-type(1){
+    background-image: url("../img/bg1.jpg");
+}
+#content .contentList>li:nth-of-type(2){
+    background-image: url("../img/bg2.jpg");
+}
+#content .contentList>li:nth-of-type(3){
+    background-image: url("../img/bg3.jpg");
+}
+#content .contentList>li:nth-of-type(4){
+    background-image: url("../img/bg4.jpg");
+}
+#content .contentList>li:nth-of-type(5){
+    background-image: url("../img/bg5.jpg");
+}
+/*--------------第一屏---------------*/
+#content .contentList>li:nth-of-type(1) div{
+    /*background-color: orange;*/
+}
+#content .contentList .home .homeList{
+    width: 1100px;
+    height: 520px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 2s,opacity 1s;
+}
+#content .contentList .home .homeList>li{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    visibility: hidden;
+}
+#content .contentList .home .homeList>li article{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 520px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+}
+
+#content .contentList .home .homeList>li:nth-of-type(1){background-color: #dc6c5f;}
+#content .contentList .home .homeList>li:nth-of-type(2){background-color: #95dc84;}
+#content .contentList .home .homeList>li:nth-of-type(3){background-color: #64b9d2;}
+#content .contentList .home .homeList>li:nth-of-type(4){background-color: #000000;}
+#content .contentList .home .homeList>li.active{
+    visibility: visible
+}
+#content .contentList .home .homePoint{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%,0);
+    transition: transform 2s,opacity 2s;
+}
+#content .contentList .home .homePoint>li{
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin: 2px;
+    background-color: rgba(255,255,255,0.5);
+    box-shadow: 0 0 4px rgba(25,25,25,0.8);
+    border-radius: 50%;
+}
+#content .contentList .home .homePoint>li.active{
+    background-color: #fff;
+
+}
+/*---------------------------切屏动画-----------------------*/
+/*#content .contentList .home .homeList>li.leftHide{*/
+
+/*    visibility: hidden;!*动画结束后的状态*!*/
+/*}*/
+/*#content .contentList .home .homeList>li.rightShow{*/
+/*    visibility: visible;!*动画结束后的状态*!*/
+/*}*/
+#content .contentList .home .homeList>li.leftHide{
+    animation: leftH 2s linear;
+    visibility: hidden;
+}
+#content .contentList .home .homeList>li.rightShow{
+    animation: rightS 2s linear;
+    visibility: visible;
+}
+@keyframes leftH {
+    0%{visibility: visible}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(0.8)}
+    100%{transform: translateZ(-200px);}
+}
+@keyframes rightS {
+    0%{visibility: hidden; transform: translateZ(-200px)}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(0.8)}
+    100%{}
+}
+
+#content .contentList .home .homeList>li.leftShow{
+    animation: leftS 2s linear;
+    visibility: visible;/*动画结束后的状态*/
+}
+#content .contentList .home .homeList>li.rightHide{
+    animation: rightH 2s linear;
+    visibility: hidden;/*动画结束后的状态*/
+}
+@keyframes leftS {
+    0%{visibility: hidden; transform: translateZ(-200px)}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(0.8)}
+    100%{}
+}
+@keyframes rightH {
+    0%{visibility: visible}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(0.8)}
+    100%{transform: translateZ(-200px);}
+}
+/*--------------第二屏-------------*/
+#content .contentList>li:nth-of-type(2) div{
+    /*background-color: #494A5F;*/
+}
+#content .contentList .course .plane1{ width:359px; height:283px; background:url("../img/plane1.png") no-repeat; position:absolute; left:300px; top:-100px; transition:1s;}
+#content .contentList .course .plane2{ width:309px; height:249px; background:url("../img/plane2.png") no-repeat; position:absolute; left:-100px; top:200px; transition:1s;}
+#content .contentList .course .plane3{ width:230px; height:182px; background:url("../img/plane3.png") no-repeat; position:absolute; left:300px; top:400px; transition:1s;}
+#content .contentList .course .course1,
+#content .contentList .course .course2{position: relative; z-index: 2}
+#content .contentList .course .course3{
+    width: 480px;
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+#content .contentList .course .course3>.itemWrapper{
+    width: 120px;
+    height: 132px;
+    float: left;
+    position: relative;
+    perspective: 800px;
+}
+#content .contentList .course .course3>.itemWrapper .item{
+    transform-style: preserve-3d;
+    transition: transform 2s 300ms;
+}
+#content .contentList .course .course3 .item>.back{
+    /*撑起item*/
+    width: 120px;
+    height: 132px;
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: #009ee0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;/*一个元素的背面（并不是指背后的元素）是否可见*/
+
+}
+#content .contentList .course .course3 .item>.front{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url("../img/pcwelt.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    backface-visibility: hidden;
+
+}
+
+/*因为要让item进行翻转，如果item没有被其他元素包裹，那么就不得不
+    将hover加载item上边，那么当item进行翻转到一定角度后，鼠标就
+    不在item上了，那么就会停止翻转，动画可是恢复，然后刚要恢复位置
+    就又碰到鼠标，然后就又继续翻转，然后又脱离鼠标，如此往复
+*/
+#content .contentList .course .course3>.itemWrapper:hover>.item{
+    transform: rotateY(180deg);
+}
+#content .contentList .course .course3>.line{
+    position: absolute;
+    width: 9px;
+    height: 410px;
+    top: -5px;
+    left: 0;
+    background-image: url("../img/plus_row.png");
+    background-repeat: no-repeat;
+
+}
+#content .contentList .course .course3>.line:nth-child(1){left: -5px;}
+#content .contentList .course .course3>.line:nth-child(2){left: 115px;}
+#content .contentList .course .course3>.line:nth-child(3){left: 235px;}
+#content .contentList .course .course3>.line:nth-child(4){left: 355px;}
+#content .contentList .course .course3>.line:nth-child(5){left: 475px;}
+/*--------------第三屏---------------*/
+#content .contentList>li:nth-of-type(3)>div{
+    /*background-color: darkgreen;*/
+}
+/*#content .contentList .works .works1{*/
+/*    margin: 50px 0 100px 50px;*/
+/*}*/
+#content .contentList .works .pencel1{ width:180px; height:97px; background:url("../img/pencel1.png") no-repeat; position:absolute; transition:1s; left:500px; top:0;}
+#content .contentList .works .pencel2{ width:268px; height:38px; background:url("../img/pencel2.png") no-repeat; position:absolute; transition:1s; left:300px; top:250px;}
+#content .contentList .works .pencel3{ width:441px; height:231px; background:url("../img/pencel3.png") no-repeat; position:absolute; transition:1s; left:650px; top:300px;}
+#content .contentList .works .works1,
+#content .contentList .works .works2{z-index: 2}
+#content .contentList .works .works2{
+    margin-left: 50px;
+}
+#content .contentList .works .works2>.item{
+    float: left;
+    width: 220px;
+    height: 133px;
+    margin: 0 1px;
+    position: relative;
+    overflow: hidden;
+}
+#content .contentList .works .works2>.item:last-of-type{
+    width: 332px;
+}
+#content .contentList .works .works2>.item .mask{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(25,25,25,0.6);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+#content .contentList .works .works2>.item .mask>.icon{
+    width: 32px;
+    height: 34px;
+    margin: 10px auto 0;
+    background-image: url("../img/zoomico.png");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-position: 0 0;
+    transition: background-position 1s;
+}
+#content .contentList .works .works2>.item:hover .mask{
+    opacity: 1;
+}
+#content .contentList .works .works2>.item img{
+    transition: transform 1s;
+}
+#content .contentList .works .works2>.item:hover img{
+    transform: rotate(20deg) scale(1.6);
+}
+#content .contentList .works .works2>.item:hover .mask>.icon{
+    background-position: 0 -34px;
+}
+
+#content .contentList .works .works3{
+    width: 167px;
+    height: 191px;
+    position: absolute;
+    left: 900px;
+    top: 170px;
+    background-image: url("../img/robot.png");
+    background-repeat: no-repeat;
+    animation: robotRun 4s linear infinite;
+}
+@keyframes robotRun {
+    0%{transform: rotateY(0);}
+    49%{
+        transform: rotateY(0);
+    }
+    50%{
+        transform: rotateY(180deg);
+        left: 25%;
+    }
+    99%{
+        transform: rotateY(180deg);
+    }
+}
+
+/*--------------第四屏---------------*/
+#content .contentList>li:nth-of-type(4)>div{
+    /*background-color: pink;*/
+}
+/*#content .contentList .about .about1{*/
+/*    */
+/*}*/
+/*#content .contentList .about .about2{*/
+/*    width: 400px;*/
+/*    margin-left: 50px;*/
+/*}*/
+#content .contentList .about .about3>.item{
+    width: 260px;
+    height: 200px;
+    border: 5px solid rgba(255,255,255,.5);
+    border-radius: 8px;
+    position: absolute;
+    transition: transform 1s;
+}
+
+#content .contentList .about .about3>.item:first-child{
+    left: 750px;
+    top: 50px;
+}
+#content .contentList .about .about3>.item:last-child{
+    left: 600px;
+    top: 290px;
+}
+#content .contentList .about .about3>.item>ul{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+#content .contentList .about .about3>.item>ul>li{
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+#content .contentList .about .about3>.item>ul>li>img{
+    position: absolute;
+    transition: 1s;
+}
+/*----------css做图片炸裂--------------*/
+/*#content .contentList .about .about3>.item>ul{*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    margin: auto;*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+
+/*}*/
+/*#content .contentList .about .about3>.item>ul>li{*/
+/*    width: 130px;*/
+/*    height: 100px;*/
+/*}*/
+/*#content .contentList .about .about3>.item:first-child>ul>li{*/
+/*    background-image: url("../img/about1.jpg");*/
+/*    background-repeat: no-repeat;*/
+/*    transition: background-position 1s;*/
+/*}*/
+/*#content .contentList .about .about3>.item:last-child>ul>li{*/
+/*    background-image: url("../img/about3.jpg");*/
+/*    background-repeat: no-repeat;*/
+/*    transition: background-position 1s;*/
+/*}*/
+/*#content .contentList .about .about3>.item>ul>li:nth-child(1){*/
+/*    background-position: 0 0;*/
+/*}*/
+/*#content .contentList .about .about3>.item>ul>li:nth-child(2){*/
+/*    background-position: -130px 0;*/
+/*}*/
+/*#content .contentList .about .about3>.item>ul>li:nth-child(3){*/
+/*    background-position: 0 -100px;*/
+/*}*/
+/*#content .contentList .about .about3>.item>ul>li:nth-child(4){*/
+/*    background-position: -130px -100px;*/
+/*}*/
+/*#content .contentList .about .about3>.item:hover>ul>li:nth-child(1){*/
+/*    background-position: 0 130px;*/
+/*}*/
+/*#content .contentList .about .about3>.item:hover>ul>li:nth-child(2){*/
+/*    background-position: -260px 0;*/
+/*}*/
+/*#content .contentList .about .about3>.item:hover>ul>li:nth-child(3){*/
+/*    background-position: 130px -100px;*/
+/*}*/
+/*#content .contentList .about .about3>.item:hover>ul>li:nth-child(4){*/
+/*    background-position: -130px -200px;*/
+/*}*/
+
+/*------------------第五屏-------------------*/
+
+#content .contentList>li:nth-of-type(5)>div{
+    /*background-color: blanchedalmond;*/
+}
+#content .contentList .team .team1,
+#content .contentList .team .team2{
+    float: left;
+    transition: transform 1s ease-in-out;
+}
+#content .contentList .team .team2{
+    margin: 40px 0 50px 150px;
+}
+#content .pagePoint{
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    z-index: 10;
+}
+#content .pagePoint>li{
+    width: 15px;
+    height: 15px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+#content .pagePoint>li.active{
+    background-color: navajowhite;
+}

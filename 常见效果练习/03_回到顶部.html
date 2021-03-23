@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>03_回到顶部</title>
+    <style>
+        #to_top {
+            width: 30px;
+            height: 40px;
+            font: 14px/20px arial;
+            text-align: center;
+            background: #06c;
+            position: fixed;
+            cursor: pointer;
+            color: #fff;
+            left: 1250px;
+            top: 500px;
+        }
+    </style>
+</head>
+<body style="height: 2000px;">
+
+<div id="to_top">返回顶部</div>
+
+<script src="jquery-1.10.1.js"></script>
+<script>
+    $(function () {
+        let allTime = 300;
+        let stepTime = 30;
+
+        $("#to_top").click(function () {
+            let scroTop = $(document).scrollTop();
+            let stepScroll = scroTop / (allTime / stepTime);
+            let timer = setInterval(function () {
+                console.log("start",scroTop);
+                scroTop -= stepScroll;
+                if (scroTop <= 0) {
+                    scroTop = 0;
+                    console.log("清楚定时器");
+                    clearInterval(timer);
+                }
+                $(document).scrollTop(scroTop);
+                console.log("stop",scroTop);
+            }, stepTime)
+        });
+    })
+    console.log(9 / 2);
+</script>
+</body>
+
+</html>

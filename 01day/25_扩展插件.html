@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery扩展插件</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+        }
+
+        .div1 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 10px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<!--
+1. 扩展jQuery的工具方法
+  $.extend(object)
+2. 扩展jQuery对象的方法
+  $.fn.extend(object)
+-->
+<input type="checkbox" name="items" value="足球"/>足球
+<input type="checkbox" name="items" value="篮球"/>篮球
+<input type="checkbox" name="items" value="羽毛球"/>羽毛球
+<input type="checkbox" name="items" value="乒乓球"/>乒乓球
+<br/>
+<input type="button" id="btn1" value="全　选"/>
+<input type="button" id="btn2" value="全不选"/>
+<input type="button" id="btn3" value="反选"/>
+
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="../jquery/my_jQuery_plugin.js"></script>
+<script type="text/javascript">
+    console.log($.min(3, 9));
+    console.log($.max(3, 9));
+    console.log("abc"+$.leftTrim("  sd  sdkf  "));
+    console.log($.rightTrim("  sdfa  sdfa  ")+"abc");
+
+    $("#btn1").click(function () {
+        $(":checkbox").checkAll();
+    });
+    $("#btn3").click(function () {
+        $(":checkbox").reverseChecked();
+    })
+
+</script>
+</body>
+</html>

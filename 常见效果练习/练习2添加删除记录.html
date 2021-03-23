@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #employeeTable{
+            margin: 50px auto 20px;
+            border-spacing: 5px;
+            background-color: #00C1B3;
+            border: 2px solid red;
+            /*border-collapse: collapse;*/
+        }
+        /*td,th{*/
+        /*    border: 1px solid orange;*/
+        /*    !*border-spacing: 20px; 放这里没用*!*/
+        /*}*/
+        #formDiv{
+            border: 2px solid red;
+            width: 300px;
+            text-align: center;
+            margin: 20px auto 20px;
+            background-color: #00ccff;
+        }
+        #formDiv table{
+            border: 1px solid mediumpurple;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th,td{
+            background-color: rgba(0,0,0,.3);
+            border: 1px solid orange;
+        }
+    </style>
+</head>
+<body>
+<table id="employeeTable">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>&nbsp;</th>
+    </tr>
+    <tr>
+        <td>Tom</td>
+        <td>tom@tom.com</td>
+        <td>5000</td>
+        <td><a href="deleteEmp?id=001">Delete</a></td>
+    </tr>
+    <tr>
+        <td>Jerry</td>
+        <td>jerry@sohu.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=002">Delete</a></td>
+    </tr>
+    <tr>
+        <td>Bob</td>
+        <td>bob@tom.com</td>
+        <td>10000</td>
+        <td><a href="deleteEmp?id=003">Delete</a></td>
+    </tr>
+</table>
+
+<div id="formDiv">
+
+    <h4>添加新员工</h4>
+
+    <table>
+        <tr>
+            <td class="word">name: </td>
+            <td class="inp">
+                <input type="text" name="empName" id="empName" />
+            </td>
+        </tr>
+        <tr>
+            <td class="word">email: </td>
+            <td class="inp">
+                <input type="text" name="email" id="email" />
+            </td>
+        </tr>
+        <tr>
+            <td class="word">salary: </td>
+            <td class="inp">
+                <input type="text" name="salary" id="salary" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="addEmpButton" value="abc">
+                    Submit
+                </button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<script type="text/javascript" src="todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    //获取输入框的jq对象
+    let $name = $("#empName");
+    let $email = $("#email");
+    let $salary = $("#salary");
+
+    $("#addEmpButton").click(function () {
+        let name = $name.val();
+        let email = $email.val();
+        let salary = $salary.val();
+        console.log(name,email,salary);
+        $("<tr>")
+            .append(`<td>${name}`)
+            .append("<td>"+email)
+            .append("<td>"+salary+"</td>")
+            .append('<td><a href="deleteEmp?id=003">Delete</a></td>')
+            .appendTo("#employeeTable>tbody");
+            // .find("a").click(clickDelete);方法一加这一句
+        $name.val("");
+        $email.val("");
+        $salary.val("");
+
+    });
+    // 方法一：
+    // //因为a标签上加了链接，那点了删除后，页面会自动调走，所以要组织浏览器的这种默认行为
+    // $("a").click(clickDelete);
+    // function clickDelete(event) {//这样的话，就不能把这个回调函数添加到新元素上了
+    //     event.preventDefault();
+    //     var $tr = $(this).parent().parent();
+    //     var name = $tr.children(":first").html();
+    //     if (confirm(`确定要删除${name}的信息吗？`)){
+    //         $tr.remove();
+    //     }
+    // }
+
+    $("tbody").click(function (event) {
+        let target = event.target || event.srcElement;
+        // console.log(target.tagName);
+        if (target.tagName.toUpperCase()=="A"){
+            console.log(target);
+            event.preventDefault();
+            var $tr = $(target).parent().parent();
+            var name = $tr.children(":first").html();
+            if (confirm(`确定要删除${name}的信息吗？`)){
+                $tr.remove();
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

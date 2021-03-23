@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        html{
+            border: 3px solid red;
+            width: 1000px;
+            height: 500px;
+            margin-left: 50px;
+        }
+        body{
+            position: relative;
+            border: 1px solid blue;
+            width: 500px;
+            height: 400px;
+            margin-top: 50px;
+            left: 20px;
+            
+        }
+        .div1{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            /*left: 25px;*/
+            /*top: 10px;*/
+            left: 10px;
+            top: 10px;
+            background-color: #00C1B3;
+            /*border: 1px solid orange;*/
+        }
+        .div2{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            background-color: skyblue;
+            /*margin-top: 50px;*/
+        }
+        .div3{
+            position: absolute;
+            top: 250px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <div class="div2">测试offset</div>
+</div>
+
+<div class="div3">
+    <button id="btn1">读取offset和position</button>
+    <button id="btn2">设置offset</button>
+</div>
+
+<!--
+获取/设置标签的位置数据
+  * offset(): 相对页面左上角的坐标
+  * position(): 相对于父元素左上角的坐标
+-->
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btn1").click(function () {
+            console.log($(".div1").offset());//{top: 51, left: 51}
+            console.log($(".div2").offset());//{top: 101, left: 51}
+            console.log($(".div1").position());//{top: 50, left: 50}
+            console.log($(".div2").position());//{top: 50, left: 0}
+            
+            console.log($("body").offset());
+            console.log($("body").position());
+        })
+        $("#btn2").click(function () {
+            $(".div2").offset({
+                top: 100,
+                left: 50
+            });
+        })
+    })
+/* ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+    offset:元素相对于视口的位置
+        给html加上Border，导致offset会比实际值少了这个border，也就是offset=实际值-html_border
+    position:元素相对于最近的开启了定位的父元素的位置（父元素border内侧到子元素同侧的margin外侧的距离）
+        如果元素的position是相对于视口的（也就是父元素都没开启position），那么position=实际值-2*html_border
+
+ */
+
+</script>
+</body>
+</html>

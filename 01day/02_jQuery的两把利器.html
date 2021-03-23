@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    1. jQuery核心函数
+        * 简称: jQuery函数($/jQuery)
+        * jQuery库向外直接暴露的就是$/jQuery
+        * 引入jQuery库后, 直接使用$即可
+        * 当函数用: $(xxx)
+        * 当对象用: $.xxx()
+    2. jQuery核心对象
+        * 简称: jQuery对象
+        * 得到jQuery对象: 执行jQuery函数返回的就是jQuery对象
+        * 使用jQuery对象: $obj.xxx()
+-->
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    console.log(typeof $);//function
+    console.log($ === jQuery);//true
+    console.log($ === window.$);//true
+
+    console.log(typeof $());//object
+
+</script>
+</body>
+</html>

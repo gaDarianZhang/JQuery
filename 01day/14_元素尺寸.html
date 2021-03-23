@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 150px;
+            background: red;
+            padding: 20px;
+            border: 20px #fbd850 solid;
+            margin: 10px;
+            background-clip: content-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div>div</div>
+<script type="text/javascript" src="../常见效果练习/todoList/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    //！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+    // 无论box-sizing是content-box还是border-box：
+    // width() 内容区(content)宽度  可以用来设置，当box-sizing是border-box的时候width就是border-box，和后边三个不一样
+    // innerWidth()  content+padding   能用来设置,但是如果box-sizing是border-box的话，结果就会有变化。
+    // 设置inner-width其实是改变content的宽度，所以会拿给的innerWidth值减去padding，然后把这个结果赋给width。
+    // 所以，如果是border-box的话，width就是content+padding+border了。
+    // outerWidth()  content+padding+border  能用来设置，道理和innerWidth一样
+    // outerWidth(true)  content+padding+border+margin   能用来设置，道理和innerWidth一样
+
+    let $div = $("div");
+    //width() 内容区宽度
+    console.log($div.width());
+    //innerWidth()  content+padding
+    console.log($div.innerWidth());
+    //outerWidth()  content+padding+border
+    console.log($div.outerWidth());
+    //outerWidth(true)  content+padding+border+margin
+    console.log($div.outerWidth(true));
+
+    // $div.width("400px");
+    $div.height(300);
+
+    $div.innerWidth(200)
+    console.log($div.innerWidth());
+    console.log($div.outerWidth());
+    console.log($div.outerWidth(true));
+
+    $div.outerWidth(200);
+
+    $div.width(300);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div class="todo-container">
+    <div class="todo-wrapper">
+        <div class="todo-header">
+            <input type="text" id="newTodo" placeholder="请输入你的任务名称，按回车确认">
+        </div>
+        <ul class="todo-main">
+<!--            暂无任务，快去创建任务吧-->
+<!--            <li class="todo-item">-->
+<!--                <label>-->
+<!--                    <input type="checkbox">-->
+<!--                    <span>吃饭</span>-->
+<!--                </label>-->
+<!--                <button class="btn btn-danger">删除</button>-->
+<!--            </li>-->
+<!--            <li class="todo-item">-->
+<!--                <label>-->
+<!--                    <input type="checkbox">-->
+<!--                    <span>吃饭</span>-->
+<!--                </label>-->
+<!--                <button class="btn btn-danger">删除</button>-->
+<!--            </li>-->
+        </ul>
+        <div class="todo-footer">
+            <label>
+                <input type="checkbox" id="checkAll">
+                <span>
+                    已完成<span id="allCompletedTodos">0</span> / 全部 <span id="allTodos">0</span>
+                </span>
+            </label>
+            <button id="removeAllCompleted" class="btn btn-danger">清除已完成任务</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="./jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        let dataJson = [{
+            "content": "吃饭"
+        }, {
+            "content": "睡觉"
+        }, {
+            "content": "剃头"
+        }];
+        let $todoMain = $(".todo-container .todo-wrapper ul");
+        let $checkAll = $("#checkAll");
+        let $allTodos = $("#allTodos");
+        let $allCompletedTodos = $("#allCompletedTodos");
+
+        loadData(dataJson);
+        //勾选任务
+        $todoMain.delegate(".todo-item input","click",function () {
+            //更新完成任务数
+            setCompletedNum();
+            //更新是否全部完成
+            $checkAll.prop("checked",$todoMain.find(":checkbox:not(:checked)").length==0);
+        });
+        //点击全部完成按钮
+        $checkAll.click(function () {
+            $todoMain.find(":checkbox").prop("checked",this.checked);
+            setCompletedNum();
+        });
+        //添加移入移出效果————》可以在css里边设置
+        // $todoMain.delegate(".todo-item","mouseenter",function () {
+        //     $(this)
+        //         .css("background","#ccc")
+        //         .children("button").show();
+        // });
+        // $todoMain.delegate(".todo-item","mouseleave",function () {
+        //     $(this)
+        //         .css("background","#fff")
+        //         .children("button").hide();
+        // })
+        //删除任务
+        $todoMain.delegate(".todo-item button", "click",function () {
+            $(this).parent().remove();
+            setAllTodosNum();
+            setCompletedNum();
+            $checkAll.prop("checked",$todoMain.children("li").length!=0 && $todoMain.find(":checkbox:not(:checked)").length==0);
+            if ($todoMain.children("li").length==0){
+                $todoMain.addClass("todo-empty");
+                $allTodos.html(0);
+                $allCompletedTodos.html(0);
+                $todoMain.html("暂无任务，快去创建任务吧");
+            }
+        })
+        //清除已完成任务
+        $("#removeAllCompleted").click(function () {
+            if(!confirm("你确定要清除所有已完成任务吗？")){
+                return;
+            }
+            else{
+                $todoMain.find(":checkbox:checked").parent().parent().remove();
+                setAllTodosNum();
+                $allCompletedTodos.html(0);
+                $checkAll.prop("checked",false);
+                if ($todoMain.children("li").length==0){
+                    $todoMain.addClass("todo-empty");
+                    $allTodos.html(0);
+                    $allCompletedTodos.html(0);
+                    $todoMain.html("暂无任务，快去创建任务吧");
+                }
+            }
+        });
+        //添加任务
+        $("#newTodo").keyup(function (event) {
+
+            event = event || window.event;
+            if (event.keyCode=="13"){
+                if ($.trim($(this).val())){
+                    if ($todoMain.children("li").length==0){
+                        $todoMain.html("");
+                        $todoMain.removeClass("todo-empty");
+                    }
+                    bindData([{"content":$(this).val()}]);
+                    $(this).val("");
+                    $checkAll.prop("checked",false);
+                }
+                else{
+                    alert("请不要输入空信息");
+                }
+            }
+        })
+
+        //网页加载数据
+        function loadData(data) {
+            if (data.length == 0){
+                $todoMain.addClass("todo-empty");
+                $allTodos.html(0);
+                $allCompletedTodos.html(0);
+                $todoMain.html("暂无任务，快去创建任务吧");
+            }
+            else{
+                $todoMain.html("");
+                bindData(data);
+            }
+        }
+        //绑定新增数据
+        function bindData(data) {
+            for (let i = 0; i < data.length; i++) {
+                $todoMain.append("<li class=\"todo-item\">\n" +
+                    "                <label>\n" +
+                    "                    <input type=\"checkbox\">\n" +
+                    "                    <span>"+data[i].content+"</span>\n" +
+                    "                </label>\n" +
+                    "                <button class=\"btn btn-danger\">删除</button>\n" +
+                    "            </li>");
+            }
+            //更新任务总数
+            setAllTodosNum();
+        }
+        //更新任务总数
+        function setAllTodosNum() {
+            $allTodos.html($todoMain.children().length)
+        }
+        //更新已完成任务
+        function setCompletedNum() {
+            $allCompletedTodos.html($todoMain.find(":checkbox:checked").length)
+        }
+
+
+
+    })
+
+</script>
+</body>
+</html>
