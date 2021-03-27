@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<ul>
-    <li class="list">1</li>
-    <li class="list">2</li>
-    <li class="list">3</li>
-    <li class="list">4</li>
-</ul>
-<ol>
-    <li>11</li>
-    <li>22</li>
-    <li>33</li>
-</ol>
-<script type="text/javascript">
-    let lis = document.querySelector("ul");
-    let lists = lis.querySelectorAll(":scope li");
-    for (var i = 0; i < lists.length; i++) {
-        console.log(lists[i]);
-    }
 
-</script>
+<body>
+    <ul>
+        <li class="list">1</li>
+        <li class="list">2</li>
+        <li class="list">3</li>
+        <li class="list">4</li>
+    </ul>
+    <ol>
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+    </ol>
+    <script type="text/javascript">
+        let lis = document.querySelector("ul");
+        let lists = lis.querySelectorAll(":scope li");
+        for (var i = 0; i < lists.length; i++) {
+            console.log(lists[i]);
+        }
+
+    </script>
 </body>
+
 </html>
